@@ -10,7 +10,7 @@ from PIL import Image
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-BASE_DIR = os.path.join(dir_path, "datasets/coco_captioning")
+BASE_DIR = os.path.join(dir_path, "coco_captioning")
 
 def set_all_seeds(seed):
   random.seed(seed)
@@ -106,7 +106,7 @@ class CocoDataset(Dataset):
         captions = self.data["%s_captions" % split][idx]
         image_idxs = self.data["%s_image_idxs" % split][idx]
         image_features = self.data["%s_features" % split][idx]
-        return image_features, captions.astype(np.long), image_idxs
+        return image_features, captions.astype(np.longlong), image_idxs
 
 def image_from_url(url):
     """
