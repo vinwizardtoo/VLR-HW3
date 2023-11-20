@@ -121,7 +121,7 @@ class PositionalEncoding(nn.Module):
     def forward(self, x):
         N, S, D = x.shape
         # TODO - add the encoding to x
-        positions = torch.arange(S,dtype = torch.long,device = x.device)
+        positions = torch.arange(S,dtype = torch.long,device = x.device) #had gone wrong here
         output = x + self.encoding(positions)
         output = self.dropout(output)
    
@@ -248,7 +248,7 @@ class TransformerDecoder(nn.Module):
         # This mask is multiplicative
         # setting mask[i,j] = 0 means jth element of the sequence is not used 
         # to predict the ith element of the sequence.
-        S_tensor = torch.ones(_len,_len, dtype=torch.bool) #Same as GPT
+        S_tensor = torch.ones(_len,_len, dtype=torch.bool) #Same as GPT?
         causal_mask = torch.tril(S_tensor).to(self.device)
         return causal_mask
                                       
